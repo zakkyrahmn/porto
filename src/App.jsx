@@ -99,7 +99,7 @@ function App() {
         ))}
       </div>
 
-      <p style={{ marginTop: "4rem", fontSize: "0.65rem", color: "#333", letterSpacing: "0.1em" }}>
+      <p style={{ marginTop: "4rem", fontSize: "0.65rem", color: "#f5c842", letterSpacing: "0.1em" }}>
         © Zakky Rahman | 2026 · Stay tuned, it'll be worth it ⚙️
       </p>
 
