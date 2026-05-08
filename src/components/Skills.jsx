@@ -20,6 +20,18 @@ const skillsData = [
     items: [
       "Archiving", "Data Management", "Administration"
     ]
+  },
+  {
+    title: "E-Commerce Operations",
+    items: [
+      "Product Management",
+      "Inventory Control",
+      "Stock Monitoring",
+      "Product Update & Listing",
+      "Customer Chat Support",
+      "Order Packing & Fulfillment",
+      "Shipping & Expedition Handling"
+    ]
   }
 ];
 
