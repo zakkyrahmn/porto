@@ -47,12 +47,6 @@ const projectsData = [
     category: "Design & Social Media",
     items: [
       {
-        title: "@naker_jatim",
-        desc: "Scheduling konten media sosial",
-        image: "/images/ignaker.png",
-        link: "https://www.instagram.com/naker_jatim/",
-      },
-      {
         title: "@kreasinema_",
         desc: "Design & scheduling konten",
         image: "/images/igkreasinema.png",
