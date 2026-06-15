@@ -90,13 +90,13 @@ export default function About() {
             transition={{ type: "spring", stiffness: 220, damping: 20 }}
             className="relative w-full max-w-[300px] md:max-w-[380px] overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.03] p-3 backdrop-blur-xl"
           >
-            <div className="relative overflow-hidden rounded-[2.1rem] border border-white/10 bg-black">
-              <img
-                src="/images/Profile.jpeg"
-                alt="Profile"
-                className="aspect-[3/4] w-full object-cover object-center transition duration-500 hover:scale-[1.05]"
-              />
-            </div>
+           <div className="relative overflow-hidden rounded-[2.1rem] border border-white/10 bg-black">
+            <img
+              src="/images/Profile.png"
+              alt="Profile"
+              className="aspect-[3/4] w-full object-cover object-center grayscale transition duration-500 hover:scale-[1.05]"
+            />
+          </div>
           </motion.div>
         </motion.div>
 

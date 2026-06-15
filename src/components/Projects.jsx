@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const projectsData = [
@@ -6,8 +6,8 @@ const projectsData = [
     category: "Web & Application Development",
     items: [
       {
-        title: "Aplikasi Laundry",
-        desc: "Sistem laundry terintegrasi dengan pembayaran Midtrans",
+        title: "Aplikasi Kasir Laundry",
+        desc: "Sistem kasir untuk usaha laundry",
         image: "/images/code.jpg",
       },
       {
@@ -24,6 +24,20 @@ const projectsData = [
         title: "Website Heart Horizon",
         desc: "Frontend Development",
         image: "/images/h2.png",
+      },
+      {
+        title: "Website Finencary POS",
+        desc: "Aplikasi Kasir & Halaman Admin Terintegrasi",
+        images: [
+          "/images/finencary/fine1.png",
+          "/images/finencary/fine2.png",
+          "/images/finencary/fine3.png",
+          "/images/finencary/fine4.png",
+          "/images/finencary/fine5.png",
+          "/images/finencary/fine6.png",
+          "/images/finencary/fine7.png",
+          "/images/finencary/fine8.png",
+        ],
       },
     ],
   },
@@ -71,7 +85,11 @@ const projectsData = [
       {
         title: "@sumberanekaplastik",
         desc: "Design, upload & optimasi akun",
-        image: "/images/sapk.png",
+        images: [
+          "/images/sapk.png",
+          "/images/sapk2.png",
+          "/images/sapk3.png",
+        ],
         link: "https://www.instagram.com/sumberanekaplastikdankemasan/",
       },
     ],
@@ -102,13 +120,13 @@ export default function Projects() {
       setCurrentImages((prev) => {
         const next = { ...prev };
 
-        projectsData.forEach((group) => {
-          group.items.forEach((project) => {
-            if (project.images?.length > 1) {
-              const currentIndex = prev[project.title] || 0;
+        projectsData.forEach((group, groupIndex) => {
+          group.items.forEach((project, projectIndex) => {
+            const cardKey = `${groupIndex}-${projectIndex}`;
 
-              next[project.title] =
-                (currentIndex + 1) % project.images.length;
+            if (project.images && project.images.length > 1) {
+              const currentIndex = prev[cardKey] || 0;
+              next[cardKey] = (currentIndex + 1) % project.images.length;
             }
           });
         });
@@ -128,8 +146,8 @@ export default function Projects() {
           Projects
         </h2>
 
-        {projectsData.map((group, i) => (
-          <div key={i} className="mb-20">
+        {projectsData.map((group, groupIndex) => (
+          <div key={groupIndex} className="mb-20">
             {/* Category */}
             <h3 className="text-2xl md:text-3xl mb-10 text-white/80">
               {group.category}
@@ -137,9 +155,12 @@ export default function Projects() {
 
             {/* Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-              {group.items.map((project, index) => {
+              {group.items.map((project, projectIndex) => {
+                const cardKey = `${groupIndex}-${projectIndex}`;
+
+                // Menentukan gambar aktif
                 const currentImage = project.images
-                  ? project.images[currentImages[project.title] || 0]
+                  ? project.images[currentImages[cardKey] || 0]
                   : project.image;
 
                 const Card = (
@@ -148,43 +169,55 @@ export default function Projects() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{
                       duration: 0.6,
-                      delay: index * 0.1,
+                      delay: projectIndex * 0.1,
                     }}
                     viewport={{ once: true }}
-                    className="group rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl hover:-translate-y-3 transition-all duration-300 hover:shadow-[0_0_60px_rgba(255,255,255,0.08)] cursor-pointer"
+                    className="group rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl hover:-translate-y-3 transition-all duration-300 hover:shadow-[0_0_60px_rgba(255,255,255,0.08)] cursor-pointer h-full flex flex-col"
                   >
-                    {/* Image */}
-                    <div className="overflow-hidden">
-                      <img
-                        src={currentImage}
-                        alt={project.title}
-                        className="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
-                      />
+                    {/* Image Container */}
+                    <div className="overflow-hidden aspect-[16/10] relative">
+                      <AnimatePresence mode="wait">
+                        <motion.img
+                          key={currentImage}
+                          src={currentImage}
+                          alt={project.title}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.5 }}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 absolute inset-0"
+                        />
+                      </AnimatePresence>
                     </div>
 
                     {/* Content */}
-                    <div className="p-6">
-                      <h4 className="text-lg font-medium mb-2">
-                        {project.title}
-                      </h4>
-                      <p className="text-sm text-white/60">
-                        {project.desc}
-                      </p>
+                    <div className="p-6 flex-grow flex flex-col justify-between">
+                      <div>
+                        <h4 className="text-lg font-medium mb-2">
+                          {project.title}
+                        </h4>
+                        <p className="text-sm text-white/60">
+                          {project.desc}
+                        </p>
+                      </div>
                     </div>
                   </motion.div>
                 );
 
                 return project.link ? (
                   <a
-                    key={index}
+                    key={projectIndex}
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="block h-full"
                   >
                     {Card}
                   </a>
                 ) : (
-                  <div key={index}>{Card}</div>
+                  <div key={projectIndex} className="h-full">
+                    {Card}
+                  </div> // DI SINI PERBAIKANNYA: Mengubah </table> menjadi </div>
                 );
               })}
             </div>
