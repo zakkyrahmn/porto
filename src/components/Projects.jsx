@@ -1,11 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { FaExternalLinkAlt, FaGithub, FaEye, FaCode, FaPaintBrush, FaStore, FaVideo, FaInstagram } from "react-icons/fa";
+import { FaExternalLinkAlt, FaGithub, FaEye, FaCode, FaPaintBrush, FaStore, FaVideo, FaInstagram, FaBriefcase } from "react-icons/fa";
 import { SiLaravel, SiReact, SiTailwindcss, SiMysql, SiFigma } from "react-icons/si";
 
 const projectsData = [
   {
     category: "Bussines",
+    icon: FaBriefcase,
     color: "primary",
     items: [
       {
@@ -387,7 +388,7 @@ export default function Projects() {
               onClick={() => setActiveCategory(category.category)}
               className={`flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors ${activeCategory === category.category ? 'bg-primary-600 text-white' : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700'}`}
             >
-              <category.icon className="w-4 h-4" />
+              {category.icon && <category.icon className="w-4 h-4" />}
               {category.category}
             </motion.button>
           ))}

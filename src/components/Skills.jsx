@@ -161,7 +161,7 @@ export default function Skills() {
               <div>
                 <div className="flex items-center gap-3 mb-3">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-primary-400 text-white">
-                    <category.icon className="w-5 h-5" />
+                    {category.icon && <category.icon className="w-5 h-5" />}
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-neutral-900 dark:text-white">
