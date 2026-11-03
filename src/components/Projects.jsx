@@ -11,6 +11,7 @@ const projectsData = [
       {
         title: "Fourkeys",
         description: "Fourkeys Tech is a software solutions provider specializing in modern web and system development.",
+        image: "/images/FT.png",
         link: "https://www.instagram.com/fourkeys.tech/",
         tags: ["Chief Finance Officer"],
         status: "Active"
