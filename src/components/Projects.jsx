@@ -5,6 +5,27 @@ import { SiLaravel, SiReact, SiTailwindcss, SiMysql, SiFigma } from "react-icons
 
 const projectsData = [
   {
+    category: "Bussines",
+    color: "primary",
+    items: [
+      {
+        title: "Fourkeys",
+        description: "Fourkeys Tech is a software solutions provider specializing in modern web and system development.",
+        link: "https://www.instagram.com/fourkeys.tech/",
+        tags: ["Chief Finance Officer"],
+        status: "Active"
+      },
+      {
+        title: "MNG Group",
+        description: "MNG Group (MANGANGROUP) serves as a multi-divisional community umbrella overseeing media, gaming, and e-commerce units.",
+        image: "/images/MNG.png",
+        link: "https://www.instagram.com/mngmedia.id/",
+        tags: ["Chief Operation Officer"],
+        status: "Active"
+      }
+    ]
+  },
+  {
     category: "Web & Application Development",
     icon: FaCode,
     color: "primary",
@@ -96,7 +117,7 @@ const projectsData = [
     color: "pink",
     items: [
       {
-        title: "Kreasinema Instagram",
+        title: "Kreasinema",
         description: "Content Strategy & Management",
         longDescription: "Content scheduling, design, and engagement strategy for entertainment-focused Instagram account.",
         image: "/images/igkreasinema.png",
@@ -106,7 +127,7 @@ const projectsData = [
         status: "Active"
       },
       {
-        title: "Plastic Packaging Brand",
+        title: "Sumber Aneka Plastik & Kemasan",
         description: "Brand Management & Product Design",
         longDescription: "Complete brand management including product photography, design, and social media optimization.",
         images: [
@@ -289,17 +310,17 @@ const ProjectCard = ({ project, index }) => {
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState("all");
 
-  const allProjects = projectsData.flatMap(category => 
+  const allProjects = projectsData.flatMap(category =>
     category.items.map(item => ({ ...item, category: category.category }))
   );
 
-  const filteredProjects = activeCategory === "all" 
-    ? allProjects 
+  const filteredProjects = activeCategory === "all"
+    ? allProjects
     : allProjects.filter(project => project.category === activeCategory);
 
   return (
     <div className="relative w-full">
-      
+
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -307,7 +328,7 @@ export default function Projects() {
         viewport={{ once: true }}
         className="mb-12 text-center"
       >
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -318,8 +339,8 @@ export default function Projects() {
             My Portfolio
           </span>
         </motion.div>
-        
-        <motion.h2 
+
+        <motion.h2
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
@@ -328,8 +349,8 @@ export default function Projects() {
         >
           Featured <span className="gradient-text">Projects</span>
         </motion.h2>
-        
-        <motion.p 
+
+        <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
